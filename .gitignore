@@ -1,3 +1,15 @@
+kagglecatsanddogs_5340.zip
+kagglecatsanddogs_5340
+PetImages/
+.conda
+archive/
+logs
+mlruns
+save_at*
+animaux/
+modeles/
+*.h5
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

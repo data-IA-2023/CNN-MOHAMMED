@@ -1,0 +1,14 @@
+# il faut installer streamlit avant tensorflow:
+# Pour installer Tf GPU dans windows:
+# conda create --name tf python=3.9
+# conda deactivate
+# conda activate tf
+# conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+# pip install --upgrade pip
+# pip install tensorflow==2.9.1
+streamlit
+tensorflow
+pydot
+matplotlib
+mlflow
+
