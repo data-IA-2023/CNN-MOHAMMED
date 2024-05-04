@@ -2,21 +2,20 @@ import streamlit as st
 from PIL import Image
 import os
 import numpy as np
-import mlflow.pyfunc
 import matplotlib.pyplot as plt
+from tensorflow import keras
+
 
 # Chargement du modèle MLflow
-logged_model = 'runs:/759d0ad6b1994ad7b8fb318ebde9762e/models'
-# loaded_model = mlflow.pyfunc.load_model(logged_model)
-
 @st.cache_resource  # Permet de mettre en cache le modèle chargé
-def load_mlflow_model(logged_model):
-    return mlflow.pyfunc.load_model(logged_model)
+def load_model(file):
+    return keras.models.load_model(file)
 
-loaded_model = load_mlflow_model(logged_model)
+model = load_model(file= "modeles\multiclass_EfficientNetB4_0.99.h5")
 
 # Chargement des classes (noms de dossiers) à partir du répertoire des données
 data_dir = "animaux"
+image_size = (380, 380)
 classes = os.listdir(data_dir)
 
 # Fonction pour prétraiter une image
@@ -62,7 +61,7 @@ if uploaded_file is not None:
         # st.image(jpeg_image, caption='Image convertie en JPEG', use_column_width=True)
 
         # Effectuer la prédiction sur l'image convertie
-        prediction = predict(jpeg_image, loaded_model, (180, 180))
+        prediction = predict(jpeg_image, model, image_size)
         predicted_class_index = np.argmax(prediction)
         predicted_class_name = classes[predicted_class_index]
         confidence = prediction[0][predicted_class_index]
