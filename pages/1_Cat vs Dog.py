@@ -26,6 +26,11 @@ def main():
 
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
+        
+        # Conversion de l'image en JPEG si ce n'est pas déjà le cas
+        if uploaded_file.type == "image/png":
+            image = image.convert("RGB")
+        
         image = image.resize(image_size)
         st.image(image, caption="Image chargée", use_column_width=True)
         
@@ -42,5 +47,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
