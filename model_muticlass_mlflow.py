@@ -93,6 +93,11 @@ x = keras.layers.Dropout(0.2)(x)
 outputs = layers.Dense(num_classes, activation="softmax")(x)
 model = keras.Model(inputs, outputs)
 
+
+# Affiche un diagramme du modèle montrant la connexion entre les différentes couches, avec les formes de sortie de chaque couche
+# keras.utils.plot_model(model, show_shapes=True)
+model.summary()
+
 # Compile the model
 model.compile(
     optimizer=keras.optimizers.Adam(),
